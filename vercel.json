@@ -1,39 +1,45 @@
 {
   "version": 2,
   "functions": {
-    "*.php": {
-      "runtime": "vercel-php@0.7.4"
-    },
-    "api/*.php": {
-      "runtime": "vercel-php@0.7.4"
-    },
-    "admin/*.php": {
+    "api/**/*.php": {
       "runtime": "vercel-php@0.7.4"
     }
   },
   "routes": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "handle": "filesystem"
     },
     {
-      "src": "/(.*)\\.php",
-      "dest": "/$1.php"
+      "src": "^/$",
+      "dest": "/api/home.php"
     },
     {
-      "src": "/admin/(.*)",
-      "dest": "/admin/$1.php"
+      "src": "^/index\\.php$",
+      "dest": "/api/home.php"
     },
     {
-      "src": "/api/(.*)",
+      "src": "^/contact\\.php$",
+      "dest": "/api/page-contact.php"
+    },
+    {
+      "src": "^/admin/(.+)\\.php$",
+      "dest": "/api/admin/$1.php"
+    },
+    {
+      "src": "^/admin/(.+)$",
+      "dest": "/api/admin/$1.php"
+    },
+    {
+      "src": "^/api/(.+)$",
       "dest": "/api/$1.php"
     },
     {
-      "src": "/",
-      "dest": "/index.php"
+      "src": "^/(.+)\\.php$",
+      "dest": "/api/$1.php"
     },
     {
-      "handle": "filesystem"
+      "src": "^/([a-z-]+)$",
+      "dest": "/api/$1.php"
     }
   ]
 }
