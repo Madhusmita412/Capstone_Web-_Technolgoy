@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "framework": "php",
-  "runtime": "php:8.1",
   "buildCommand": "mkdir -p /tmp/build && cp -r ./* /tmp/build/ && ls -la /tmp/build/",
   "functions": {
-    "api/**/*.php": {
-      "runtime": "php:8.1"
-    }
+    "api/**/*.php": {}
   },
   "routes": [
     {

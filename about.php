@@ -118,53 +118,8 @@ $isLoggedIn = Auth::isLoggedIn();
                     </div>
                 </div>
             </section>
-
-            <!-- Technology Section -->
-            <section style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%); padding: 3rem; border-radius: 1rem; margin-bottom: 4rem;">
-                <h2 style="margin-bottom: 2rem;">Technology Stack</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
-                    <div>
-                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Frontend</h3>
-                        <ul style="list-style: none;">
-                            <li>✓ HTML5</li>
-                            <li>✓ CSS3 (Modern Styling)</li>
-                            <li>✓ JavaScript (Vanilla)</li>
-                            <li>✓ Responsive Design</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Backend</h3>
-                        <ul style="list-style: none;">
-                            <li>✓ PHP 7.4+</li>
-                            <li>✓ Object-Oriented Design</li>
-                            <li>✓ Prepared Statements</li>
-                            <li>✓ Session Management</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Database</h3>
-                        <ul style="list-style: none;">
-                            <li>✓ MySQL 5.7+</li>
-                            <li>✓ Optimized Schema</li>
-                            <li>✓ Indexed Queries</li>
-                            <li>✓ Data Integrity</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Security</h3>
-                        <ul style="list-style: none;">
-                            <li>✓ Password Hashing (bcrypt)</li>
-                            <li>✓ SQL Injection Prevention</li>
-                            <li>✓ XSS Protection</li>
-                            <li>✓ Session Security</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
+        
+                    
             <!-- Complaint Categories Section -->
             <section style="margin-bottom: 4rem;">
                 <h2 style="text-align: center; margin-bottom: 2rem;">Supported Categories</h2>

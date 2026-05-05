@@ -7,7 +7,7 @@
 // Database Configuration
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'Madhu@2005');
 define('DB_NAME', 'complaint_system');
 
 // Application Settings

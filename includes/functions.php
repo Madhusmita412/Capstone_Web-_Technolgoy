@@ -306,4 +306,76 @@ class ContactMessage {
         return $db->update('contact_messages', ['read_status' => 1], 'id = ?', [$id], 'i');
     }
 }
+
+/**
+ * Get status badge HTML
+ */
+function getStatusBadge($status) {
+    $badges = [
+        'Pending' => '<span class="badge badge-pending">● Pending</span>',
+        'In Progress' => '<span class="badge badge-in-progress">● In Progress</span>',
+        'Resolved' => '<span class="badge badge-resolved">✓ Resolved</span>'
+    ];
+    return isset($badges[$status]) ? $badges[$status] : $badges['Pending'];
+}
+
+/**
+ * Get priority badge HTML
+ */
+function getPriorityBadge($priority) {
+    return '<span class="priority priority-' . strtolower($priority) . '">
+        <span class="priority-indicator"></span>
+        ' . htmlspecialchars($priority) . '
+    </span>';
+}
+
+/**
+ * Truncate text to specified length
+ */
+function truncateText($text, $length = 100, $suffix = '...') {
+    if (strlen($text) <= $length) {
+        return $text;
+    }
+    return substr($text, 0, $length) . $suffix;
+}
+
+/**
+ * Format date with time
+ */
+function formatDate($dateString) {
+    if (empty($dateString)) {
+        return 'N/A';
+    }
+    return date('M d, Y h:i A', strtotime($dateString));
+}
+
+/**
+ * Format date only
+ */
+function formatDateOnly($dateString) {
+    if (empty($dateString)) {
+        return 'N/A';
+    }
+    return date('M d, Y', strtotime($dateString));
+}
+
+/**
+ * Format relative time
+ */
+function formatRelativeTime($dateString) {
+    if (empty($dateString)) {
+        return 'N/A';
+    }
+    
+    $date = new DateTime($dateString);
+    $now = new DateTime();
+    $interval = $now->diff($date);
+    
+    if ($interval->y > 0) return $interval->y . ' year' . ($interval->y > 1 ? 's' : '') . ' ago';
+    if ($interval->m > 0) return $interval->m . ' month' . ($interval->m > 1 ? 's' : '') . ' ago';
+    if ($interval->d > 0) return $interval->d . ' day' . ($interval->d > 1 ? 's' : '') . ' ago';
+    if ($interval->h > 0) return $interval->h . ' hour' . ($interval->h > 1 ? 's' : '') . ' ago';
+    if ($interval->i > 0) return $interval->i . ' minute' . ($interval->i > 1 ? 's' : '') . ' ago';
+    return 'Just now';
+}
 ?>
