@@ -2,7 +2,9 @@
   "version": 2,
   "buildCommand": "mkdir -p /tmp/build && cp -r ./* /tmp/build/ && ls -la /tmp/build/",
   "functions": {
-    "api/**/*.php": {}
+    "api/**/*.php": {
+      "runtime": "@vercel/php"
+    }
   },
   "routes": [
     {

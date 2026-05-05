@@ -151,6 +151,14 @@ $categories = Complaint::getByCategory($user_id);
                                 <div class="complaint-title"><?php echo htmlspecialchars($complaint['title']); ?></div>
                                 <a href="complaint-details.php?id=<?php echo $complaint['id']; ?>" class="btn btn-small btn-outline">View Details →</a>
                             </div>
+                            <div class="working">
+                                <div class="complaint-meta">
+                                    <span style="background: rgba(99, 102, 241, 0.1); padding: 0.35rem 0.75rem; border-radius: var(--radius-full); font-size: 0.9rem;">
+                                        <?php echo htmlspecialchars($complaint['category']); ?>
+                                    </span>
+                                </div>  
+                    </div>  
+                                    
 
                             <div class="complaint-meta">
                                 <span style="background: rgba(99, 102, 241, 0.1); padding: 0.35rem 0.75rem; border-radius: var(--radius-full); font-size: 0.9rem;">
