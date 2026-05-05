@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: fixit-web
+    ports:
+      - "8000:80"
+    environment:
+      - DB_HOST=db
+      - DB_USER=fixit_user
+      - DB_PASS=fixit_password
+      - DB_NAME=complaint_system
+      - APP_URL=http://localhost:8000
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - fixit-network
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: fixit-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: complaint_system
+      MYSQL_USER: fixit_user
+      MYSQL_PASSWORD: fixit_password
+    volumes:
+      - ./sql/database.sql:/docker-entrypoint-initdb.d/database.sql
+      - mysql_data:/var/lib/mysql
+    networks:
+      - fixit-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: fixit-phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: fixit_user
+      PMA_PASSWORD: fixit_password
+      PMA_ROOT_PASSWORD: root_password
+    depends_on:
+      - db
+    networks:
+      - fixit-network
+    restart: unless-stopped
+
+networks:
+  fixit-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

@@ -1,0 +1,149 @@
+# FixIt Smart Complaint Management System - Git Ignore
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.phpstorm.meta.php
+.netbeans/
+.project
+.settings/
+*.classpath
+*.c9/
+
+# Environment & Configuration
+.env
+.env.local
+.env.*.local
+config.local.php
+
+# Logs & Temporary Files
+*.log
+error_log
+debug.log
+access_log
+*.tmp
+*.temp
+tmp/
+
+# PHP Cache
+.php_cs.cache
+.phpunit.result.cache
+composer.lock
+vendor/
+
+# Database Files
+*.sql.bak
+database_backup/
+*.db
+*.sqlite
+
+# Upload & File Storage (except structure)
+uploads/*
+!uploads/.gitkeep
+
+# Backup & Recovery Files
+*.bak
+*.backup
+~*
+*.orig
+
+# Test Files & Coverage
+coverage/
+.phpunit.result.cache
+tests/_output/
+
+# OS-specific
+.AppleDouble
+.LSOverride
+$RECYCLE.BIN/
+desktop.ini
+
+# Compiled Files
+*.o
+*.class
+*.jar
+*.pyc
+*.so
+*.dll
+*.exe
+
+# Package Manager
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build Output
+dist/
+build/
+.grunt/
+.nyc_output/
+
+# Documentation Build
+docs/_build/
+
+# Security Files
+private_key
+.pem
+*.key
+secrets.json
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+.github/
+.circleci/
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Platform-specific
+nbproject/
+*.exe
+*.com
+*.bat
+*.cmd
+*.sh~
+
+# IDE-specific
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Additional Files
+*.rar
+*.zip
+*.7z
+*.tar.gz
+
+# System Files
+Thumbs.db
+.Thumbs.db
+
+# Mac OS
+.AppleDouble
+.LSOverride
+
+# Windows
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*.pid
+*.lock

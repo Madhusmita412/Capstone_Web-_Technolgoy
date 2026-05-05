@@ -1,0 +1,76 @@
+# FixIt Smart Complaint Management System - Apache Configuration
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Set the base directory
+    RewriteBase /complaint_web/
+    
+    # Remove .php extension from URLs
+    # This allows /page instead of /page.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ $1.php [L,QSA]
+    
+    # Redirect www to non-www
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking attacks
+    Header always append X-Frame-Options "SAMEORIGIN"
+    
+    # Prevent MIME-type sniffing
+    Header always append X-Content-Type-Options "nosniff"
+    
+    # Enable XSS protection
+    Header always append X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header always append Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
+</IfModule>
+
+# Disable directory listing
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Prevent access to sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "(config\.php|auth\.php|db\.php|functions\.php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Allow access to specific file types
+<FilesMatch "\.(jpg|jpeg|png|gif|css|js|pdf|doc|docx)$">
+    Header add Cache-Control "max-age=86400"
+</FilesMatch>
+
+# Compress output
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>
+
+# Set PHP configuration
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 50M
+    php_value post_max_size 50M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+    php_flag magic_quotes_gpc Off
+    php_flag register_globals Off
+</IfModule>
+
+# Error and Access Logs
+ErrorLog logs/complaint_web_error.log
+CustomLog logs/complaint_web_access.log combined
