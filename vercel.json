@@ -3,7 +3,7 @@
   "buildCommand": "mkdir -p /tmp/build && cp -r ./* /tmp/build/ && ls -la /tmp/build/",
   "functions": {
     "api/**/*.php": {
-      "runtime": "@vercel/php"
+      "runtime": "@vercel/php@1.0.0"
     }
   },
   "routes": [
