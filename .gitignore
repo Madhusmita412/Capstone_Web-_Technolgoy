@@ -1,6 +1,11 @@
-# FixIt Smart Complaint Management System - Git Ignore
+# ================================
+# CRITICAL: NEVER TRACK GIT INTERNALS
+# ================================
+.git
 
-# Operating System Files
+# ================================
+# OPERATING SYSTEM FILES
+# ================================
 .DS_Store
 .DS_Store?
 ._*
@@ -8,12 +13,18 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-*.swp
-*.swo
-*~
+desktop.ini
+$RECYCLE.BIN/
 
-# IDE & Editor Files
-.vscode/
+# ================================
+# EDITOR / IDE FILES
+# ================================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 .idea/
 *.sublime-project
 *.sublime-workspace
@@ -24,13 +35,20 @@ Thumbs.db
 *.classpath
 *.c9/
 
-# Environment & Configuration
+# ================================
+# ENVIRONMENT / CONFIG
+# ================================
 .env
-.env.local
-.env.*.local
+.env.*
 config.local.php
+secrets.json
+private_key
+*.pem
+*.key
 
-# Logs & Temporary Files
+# ================================
+# LOGS & TEMP FILES
+# ================================
 *.log
 error_log
 debug.log
@@ -38,41 +56,75 @@ access_log
 *.tmp
 *.temp
 tmp/
+*.pid
+*.lock
 
-# PHP Cache
+# ================================
+# PHP / COMPOSER
+# ================================
+vendor/
 .php_cs.cache
 .phpunit.result.cache
-composer.lock
-vendor/
 
-# Database Files
+# ⚠️ KEEP composer.lock (DO NOT IGNORE)
+# composer.lock
+
+# ================================
+# DATABASE / BACKUPS
+# ================================
 *.sql.bak
 database_backup/
 *.db
 *.sqlite
+*.bak
+*.backup
+*.orig
+~*
 
-# Upload & File Storage (except structure)
+# ================================
+# UPLOADS (KEEP STRUCTURE ONLY)
+# ================================
 uploads/*
 !uploads/.gitkeep
 
-# Backup & Recovery Files
-*.bak
-*.backup
-~*
-*.orig
-
-# Test Files & Coverage
+# ================================
+# TEST / COVERAGE
+# ================================
 coverage/
-.phpunit.result.cache
 tests/_output/
 
-# OS-specific
-.AppleDouble
-.LSOverride
-$RECYCLE.BIN/
-desktop.ini
+# ================================
+# NODE / FRONTEND
+# ================================
+node_modules/
+package-lock.json
+yarn.lock
 
-# Compiled Files
+# ================================
+# BUILD OUTPUT
+# ================================
+dist/
+build/
+.grunt/
+.nyc_output/
+
+# ================================
+# DOCKER
+# ================================
+.docker/
+docker-compose.override.yml
+
+# ================================
+# ARCHIVES
+# ================================
+*.rar
+*.zip
+*.7z
+*.tar.gz
+
+# ================================
+# COMPILED / BINARIES
+# ================================
 *.o
 *.class
 *.jar
@@ -80,70 +132,20 @@ desktop.ini
 *.so
 *.dll
 *.exe
-
-# Package Manager
-node_modules/
-package-lock.json
-yarn.lock
-
-# Build Output
-dist/
-build/
-.grunt/
-.nyc_output/
-
-# Documentation Build
-docs/_build/
-
-# Security Files
-private_key
-.pem
-*.key
-secrets.json
-
-# CI/CD
-.travis.yml
-.gitlab-ci.yml
-.github/
-.circleci/
-
-# Docker
-.docker/
-docker-compose.override.yml
-
-# Platform-specific
-nbproject/
-*.exe
 *.com
 *.bat
 *.cmd
-*.sh~
 
-# IDE-specific
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# Additional Files
-*.rar
-*.zip
-*.7z
-*.tar.gz
-
-# System Files
-Thumbs.db
-.Thumbs.db
-
-# Mac OS
-.AppleDouble
-.LSOverride
-
-# Windows
-[Dd]esktop.ini
-$RECYCLE.BIN/
-
-# Linux
-*.pid
-*.lock
+# ================================
+# MISC
+# ================================
+AUTO_MERGE
+COMMIT_EDITMSG
+FETCH_HEAD
+HEAD
+ORIG_HEAD
+index
+logs/
+objects/
+refs/
+packed-refs
