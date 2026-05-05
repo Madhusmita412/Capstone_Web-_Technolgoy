@@ -9,7 +9,15 @@
   "routes": [
     {
       "src": "^/$",
-      "dest": "/api/index.php"
+      "dest": "/api/home.php"
+    },
+    {
+      "src": "^/index\\.php$",
+      "dest": "/api/home.php"
+    },
+    {
+      "src": "^/contact\\.php$",
+      "dest": "/api/page-contact.php"
     },
     {
       "src": "^/(.+)\\.php$",
