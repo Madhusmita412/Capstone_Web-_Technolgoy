@@ -9,6 +9,7 @@ require_once __DIR__ . '/config.php';
 class Database {
     private $conn;
     private static $instance;
+    private $lastError = null;
 
     /**
      * Singleton pattern - Get database instance
@@ -24,24 +25,47 @@ class Database {
      * Private constructor for singleton
      */
     private function __construct() {
-        $this->connect();
     }
 
     /**
      * Connect to database
      */
     private function connect() {
+        if ($this->conn instanceof mysqli) {
+            return true;
+        }
+
         try {
             $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
             
             if ($this->conn->connect_error) {
-                throw new Exception('Database connection failed: ' . $this->conn->connect_error);
+                $this->lastError = $this->conn->connect_error;
+                $this->conn = null;
+                return false;
             }
             
             $this->conn->set_charset('utf8mb4');
+            $this->lastError = null;
+            return true;
         } catch (Exception $e) {
-            die('Connection Error: ' . $e->getMessage());
+            $this->lastError = $e->getMessage();
+            $this->conn = null;
+            return false;
         }
+    }
+
+    /**
+     * Check whether the database connection is available.
+     */
+    public function isConnected() {
+        return $this->connect();
+    }
+
+    /**
+     * Get the last connection error if one occurred.
+     */
+    public function getLastError() {
+        return $this->lastError;
     }
 
     /**
@@ -56,7 +80,14 @@ class Database {
      */
     public function query($sql, $params = [], $types = '') {
         try {
+            if (!$this->connect()) {
+                return false;
+            }
+
             $stmt = $this->conn->prepare($sql);
+            if (!$stmt) {
+                throw new Exception($this->conn->error);
+            }
             
             if ($params && $types) {
                 $stmt->bind_param($types, ...$params);
@@ -74,6 +105,9 @@ class Database {
      */
     public function getRow($sql, $params = [], $types = '') {
         $stmt = $this->query($sql, $params, $types);
+        if (!$stmt) {
+            return null;
+        }
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
@@ -83,6 +117,9 @@ class Database {
      */
     public function getRows($sql, $params = [], $types = '') {
         $stmt = $this->query($sql, $params, $types);
+        if (!$stmt) {
+            return [];
+        }
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -91,6 +128,10 @@ class Database {
      * Insert data
      */
     public function insert($table, $data) {
+        if (!$this->connect()) {
+            return false;
+        }
+
         $columns = array_keys($data);
         $values = array_values($data);
         $placeholders = array_fill(0, count($values), '?');
@@ -110,6 +151,10 @@ class Database {
      * Update data
      */
     public function update($table, $data, $where, $where_params = [], $where_types = '') {
+        if (!$this->connect()) {
+            return false;
+        }
+
         $sets = [];
         $values = [];
         
@@ -131,15 +176,23 @@ class Database {
      * Delete data
      */
     public function delete($table, $where, $params = [], $types = '') {
+        if (!$this->connect()) {
+            return false;
+        }
+
         $sql = "DELETE FROM `$table` WHERE " . $where;
         $stmt = $this->query($sql, $params, $types);
-        return $stmt->affected_rows > 0;
+        return $stmt ? $stmt->affected_rows > 0 : false;
     }
 
     /**
      * Count records
      */
     public function count($table, $where = '', $params = [], $types = '') {
+        if (!$this->connect()) {
+            return 0;
+        }
+
         $sql = "SELECT COUNT(*) as count FROM `$table`";
         
         if ($where) {
@@ -182,6 +235,6 @@ class Database {
     }
 }
 
-// Create database instance
+// Create database instance without forcing an immediate connection.
 $db = Database::getInstance();
 ?>

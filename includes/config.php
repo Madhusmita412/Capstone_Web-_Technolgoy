@@ -5,10 +5,10 @@
  */
 
 // Database Configuration
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', 'Madhu@2005');
-define('DB_NAME', 'complaint_system');
+define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') ?: 'Madhu@2005');
+define('DB_NAME', getenv('DB_NAME') ?: 'complaint_system');
 
 // Application Settings
 define('APP_NAME', 'FixIt — Smart Complaint Portal');
