@@ -19,7 +19,7 @@ $isAdmin = Auth::isAdmin();
     <meta name="description" content="FixIt - Smart Complaint Management System for College Complaints">
     <meta name="author" content="Development Team">
     <title><?php echo APP_NAME; ?> - Home</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -222,6 +222,6 @@ $isAdmin = Auth::isAdmin();
         </div>
     </footer>
 
-    <script src="/assets/js/validation.js"></script>
+    <script src="assets/js/validation.js"></script>
 </body>
 </html>

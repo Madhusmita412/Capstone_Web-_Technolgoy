@@ -36,7 +36,7 @@ class Database {
         }
 
         try {
-            $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+            $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, (int)DB_PORT);
             
             if ($this->conn->connect_error) {
                 $this->lastError = $this->conn->connect_error;
@@ -96,6 +96,7 @@ class Database {
             $stmt->execute();
             return $stmt;
         } catch (Exception $e) {
+            $this->lastError = $e->getMessage();
             throw new Exception('Query Error: ' . $e->getMessage());
         }
     }
@@ -144,6 +145,7 @@ class Database {
         if ($stmt) {
             return $this->conn->insert_id;
         }
+        $this->lastError = $this->conn ? $this->conn->error : $this->lastError;
         return false;
     }
 

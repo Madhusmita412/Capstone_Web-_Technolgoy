@@ -41,15 +41,7 @@ class FormValidator {
             $errors['confirm_password'] = 'Passwords do not match';
         }
 
-        // Validate roll number
-        if (empty($data['roll_number'])) {
-            $errors['roll_number'] = 'Roll number is required';
-        }
-
-        // Validate department
-        if (empty($data['department'])) {
-            $errors['department'] = 'Please select a department';
-        }
+        // Roll number and department are optional.
 
         return $errors;
     }

@@ -24,6 +24,13 @@ class Auth {
      */
     public static function register($name, $email, $password, $roll_number = '', $department = '') {
         $db = Database::getInstance();
+
+        if (!$db->isConnected()) {
+            return [
+                'success' => false,
+                'message' => 'Database connection failed: ' . ($db->getLastError() ?: 'unknown error')
+            ];
+        }
         
         // Validate inputs
         if (empty($name) || empty($email) || empty($password)) {
@@ -52,7 +59,10 @@ class Auth {
             return ['success' => true, 'message' => 'Registration successful', 'user_id' => $user_id];
         }
 
-        return ['success' => false, 'message' => 'Registration failed'];
+        return [
+            'success' => false,
+            'message' => 'Registration failed: ' . ($db->getLastError() ?: 'unknown error')
+        ];
     }
 
     /**

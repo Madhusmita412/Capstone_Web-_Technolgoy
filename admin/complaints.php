@@ -51,7 +51,7 @@ $complaints = Complaint::getAllComplaints($filters, 50, 0);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo APP_NAME; ?> - Manage Complaints</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         .admin-container {
             display: flex;
@@ -238,6 +238,6 @@ $complaints = Complaint::getAllComplaints($filters, 50, 0);
         </main>
     </div>
 
-    <script src="/assets/js/validation.js"></script>
+    <script src="../assets/js/validation.js"></script>
 </body>
 </html>

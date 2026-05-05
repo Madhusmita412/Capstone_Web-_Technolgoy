@@ -6,8 +6,9 @@
 
 // Database Configuration
 define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
+define('DB_PORT', getenv('DB_PORT') ?: '8800');
 define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') ?: 'Madhu@2005');
+define('DB_PASS', getenv('DB_PASS') ?: 'Manish098@#$');
 define('DB_NAME', getenv('DB_NAME') ?: 'complaint_system');
 
 // Application Settings
