@@ -17,28 +17,5 @@
       "src": "/(.*)",
       "dest": "/index.php"
     }
-  ],
-  "env": {
-    "DB_HOST": "@db_host",
-    "DB_USER": "@db_user",
-    "DB_PASS": "@db_pass",
-    "DB_NAME": "@db_name",
-    "APP_URL": "@app_url"
-  },
-  "envs": {
-    "development": {
-      "DB_HOST": "localhost",
-      "DB_USER": "root",
-      "DB_PASS": "",
-      "DB_NAME": "complaint_system",
-      "APP_URL": "http://localhost:3000"
-    },
-    "production": {
-      "DB_HOST": "your-db-host.com",
-      "DB_USER": "your-db-user",
-      "DB_PASS": "your-db-password",
-      "DB_NAME": "complaint_system",
-      "APP_URL": "https://your-domain.vercel.app"
-    }
-  }
+]
 }
