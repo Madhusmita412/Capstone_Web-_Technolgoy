@@ -10,7 +10,23 @@
       "dest": "/index.php"
     },
     {
-      "src": "^/(.*)$",
+      "src": "^/api/(.*)$",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "^/admin/(.+)\\.php$",
+      "dest": "/admin/$1.php"
+    },
+    {
+      "src": "^/([a-z-]+)\\.php$",
+      "dest": "/$1.php"
+    },
+    {
+      "src": "^/admin/(.+)$",
+      "dest": "/admin/$1.php"
+    },
+    {
+      "src": "^/([a-z-]+)$",
       "dest": "/$1.php"
     }
   ]
