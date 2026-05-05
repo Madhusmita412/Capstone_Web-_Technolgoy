@@ -36,7 +36,7 @@ $category_breakdown = Complaint::getByCategory();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo APP_NAME; ?> - Admin Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <style>
         .admin-container {
             display: flex;
