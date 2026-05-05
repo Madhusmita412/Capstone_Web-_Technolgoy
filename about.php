@@ -47,7 +47,7 @@ $isLoggedIn = Auth::isLoggedIn();
     </nav>
 
     <!-- About Hero -->
-    <section style="background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%); color: white; padding: 4rem 2rem; text-align: center;">
+    <section style="background: linear-gradient(135deg, #06bf00 0%, #04d20b 100%); color: white; padding: 4rem 2rem; text-align: center;">
         <div class="container">
             <h1 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;">About FixIt</h1>
             <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9);">Making Campus Better, One Complaint at a Time</p>

@@ -12,7 +12,17 @@ define('DB_NAME', 'complaint_system');
 
 // Application Settings
 define('APP_NAME', 'FixIt — Smart Complaint Portal');
-define('APP_URL', 'http://localhost/complaint_web');
+
+// Application base URL - try to detect dynamically when running via web server
+$defaultAppUrl = 'http://localhost/complaint_web';
+if (php_sapi_name() !== 'cli' && isset($_SERVER['HTTP_HOST'])) {
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $base = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+    define('APP_URL', $scheme . '://' . $host . ($base === '/' ? '' : $base));
+} else {
+    define('APP_URL', $defaultAppUrl);
+}
 define('UPLOADS_DIR', __DIR__ . '/../uploads/');
 
 // Session Configuration
