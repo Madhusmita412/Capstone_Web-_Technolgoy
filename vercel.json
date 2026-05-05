@@ -1,33 +1,39 @@
 {
   "version": 2,
-  "buildCommand": "mkdir -p public",
+  "functions": {
+    "*.php": {
+      "runtime": "vercel-php@0.7.4"
+    },
+    "api/*.php": {
+      "runtime": "vercel-php@0.7.4"
+    },
+    "admin/*.php": {
+      "runtime": "vercel-php@0.7.4"
+    }
+  },
   "routes": [
     {
-      "handle": "filesystem"
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
     },
     {
-      "src": "^/$",
+      "src": "/(.*)\\.php",
+      "dest": "/$1.php"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "/admin/$1.php"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1.php"
+    },
+    {
+      "src": "/",
       "dest": "/index.php"
     },
     {
-      "src": "^/api/(.*)$",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "^/admin/(.+)\\.php$",
-      "dest": "/admin/$1.php"
-    },
-    {
-      "src": "^/([a-z-]+)\\.php$",
-      "dest": "/$1.php"
-    },
-    {
-      "src": "^/admin/(.+)$",
-      "dest": "/admin/$1.php"
-    },
-    {
-      "src": "^/([a-z-]+)$",
-      "dest": "/$1.php"
+      "handle": "filesystem"
     }
   ]
 }
