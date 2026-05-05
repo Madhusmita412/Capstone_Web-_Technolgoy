@@ -179,6 +179,6 @@ if ($complaint['user_id'] != $user['id'] && $user['user_type'] !== 'admin') {
         </div>
     </footer>
 
-    <script src="assets/js/validation.js"></script>
+    <script src="/assets/js/validation.js"></script>
 </body>
 </html>

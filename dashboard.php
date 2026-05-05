@@ -192,7 +192,7 @@ $categories = Complaint::getByCategory($user_id);
         </div>
     </footer>
 
-    <script src="assets/js/validation.js"></script>
+    <script src="/assets/js/validation.js"></script>
     <script>
         // Real-time filter
         document.getElementById('statusFilter').addEventListener('change', function() {

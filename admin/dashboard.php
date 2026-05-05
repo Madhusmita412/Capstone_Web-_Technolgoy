@@ -258,6 +258,6 @@ $category_breakdown = Complaint::getByCategory();
         </main>
     </div>
 
-    <script src="../assets/js/validation.js"></script>
+    <script src="/assets/js/validation.js"></script>
 </body>
 </html>

@@ -238,6 +238,6 @@ $complaints = Complaint::getAllComplaints($filters, 50, 0);
         </main>
     </div>
 
-    <script src="../assets/js/validation.js"></script>
+    <script src="/assets/js/validation.js"></script>
 </body>
 </html>

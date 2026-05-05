@@ -7,9 +7,6 @@
   },
   "routes": [
     {
-      "handle": "filesystem"
-    },
-    {
       "src": "^/$",
       "dest": "/api/home.php"
     },
@@ -24,6 +21,9 @@
     {
       "src": "^/(.+)\\.php$",
       "dest": "/api/$1.php"
+    },
+    {
+      "handle": "filesystem"
     }
   ],
   "cleanUrls": false
