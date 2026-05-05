@@ -1,23 +1,22 @@
 {
   "version": 2,
-  "buildCommand": "mkdir -p /tmp/build && cp -r ./* /tmp/build/ && ls -la /tmp/build/",
   "functions": {
     "api/**/*.php": {
-      "runtime": "@vercel/php@1.0.0"
+      "runtime": "vercel-php@0.7.4"
     }
   },
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "^/$",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "^/(.+)\\.php$",
       "dest": "/api/$1.php"
     },
     {
-      "src": "/(.*).php",
-      "dest": "/$1.php"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.php"
+      "handle": "filesystem"
     }
-]
+  ],
+  "cleanUrls": false
 }
